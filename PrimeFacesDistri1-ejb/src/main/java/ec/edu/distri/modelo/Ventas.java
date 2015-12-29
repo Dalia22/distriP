@@ -16,6 +16,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,10 +36,18 @@ public class Ventas implements Serializable{
     private Integer codigo;
     
     @Column(name = "pevnd_numven", nullable = false)
-    private Integer vendedor; 
+    private Integer codigoVendedor; 
+    
+    @JoinColumn(name = "pevnd_numven", referencedColumnName = "pevnd_numven", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Vendedor vendedor;
     
     @Column(name = "pecli_numcli", nullable = false)
-    private Integer cliente;
+    private Integer codigoCliente;
+    
+    @JoinColumn(name = "pecli_numcli", referencedColumnName = "pecli_numcli", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Cliente cliente;
    
     @Column(name = "pevnt_totven", nullable = false)
     private BigDecimal totalVenta;
@@ -63,20 +73,20 @@ public class Ventas implements Serializable{
         this.codigo = codigo;
     }
 
-    public Integer getVendedor() {
-        return vendedor;
+    public Integer getCodigoVendedor() {
+        return codigoVendedor;
     }
 
-    public void setVendedor(Integer vendedor) {
-        this.vendedor = vendedor;
+    public void setCodigoVendedor(Integer codigoVendedor) {
+        this.codigoVendedor = codigoVendedor;
     }
 
-    public Integer getCliente() {
-        return cliente;
+    public Integer getCodigoCliente() {
+        return codigoCliente;
     }
 
-    public void setCliente(Integer cliente) {
-        this.cliente = cliente;
+    public void setCodigoCliente(Integer codigoCliente) {
+        this.codigoCliente = codigoCliente;
     }
 
     public BigDecimal getTotalVenta() {
@@ -119,6 +129,23 @@ public class Ventas implements Serializable{
         this.tipoVenta = tipoVenta;
     }
 
+    public Vendedor getVendedor() {
+        return vendedor;
+    }
+
+    public void setVendedor(Vendedor vendedor) {
+        this.vendedor = vendedor;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+    
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -143,7 +170,7 @@ public class Ventas implements Serializable{
 
     @Override
     public String toString() {
-        return "Ventas{" + "codigo=" + codigo + ", vendedor=" + vendedor + ", cliente=" + cliente + ", totalVenta=" + totalVenta + ", direccion=" + direccion + ", fecha=" + fecha + ", tipoPago=" + tipoPago + ", tipoVenta=" + tipoVenta + '}';
+        return "Ventas{" + "codigo=" + codigo + ", vendedor=" + codigoVendedor + ", cliente=" + codigoCliente + ", totalVenta=" + totalVenta + ", direccion=" + direccion + ", fecha=" + fecha + ", tipoPago=" + tipoPago + ", tipoVenta=" + tipoVenta + '}';
     }         
     
 }
