@@ -15,7 +15,7 @@ import javax.ejb.Stateless;
 
 /**
  *
- * @author RAUL
+ * @author Dalia
  */
 @LocalBean
 @Stateless 
@@ -35,10 +35,10 @@ public class ClienteServicio {
             this.clienteDAO.insert(cliente);
         }
         else{
-            throw new ValidacionException("El codigo es "+cliente.getCodigo()+" ya existe"); 
+            throw new ValidacionException("El codigo "+cliente.getCodigo()+" ya existe"); 
         }
     }
-    public void actualiarCliente(Cliente cliente){
+    public void actualizarCliente(Cliente cliente){
         this.clienteDAO.update(cliente);
     }
     

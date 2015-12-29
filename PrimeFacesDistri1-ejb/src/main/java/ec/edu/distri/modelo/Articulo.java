@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package ec.edu.distri.modelo;
 
 import java.io.Serializable;
@@ -19,25 +20,27 @@ import javax.persistence.Table;
  *
  * @author Dalia
  */
+
 @Entity
-@Table(name = "pecli_cliente")
-public class Cliente implements Serializable {
+@Table(name = "peart_articulo")
+public class Articulo  implements Serializable{
+    
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "pecli_numcli", nullable = false)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//sólo si es autoincremental
+    @Column(name = "peart_numart", nullable = false)
     private Integer codigo;
     
-    @Column(name = "pecli_nomcli", nullable = false)
+     @Column(name = "peart_nomart", nullable = false)
     private String nombre;
+     
+     @Column(name="peart_descri", nullable = false)
+     private String descripcion;
+     
+     @Column(name = "peart_preart", nullable = false)
+    private BigDecimal precio;
     
-    @Column(name = "pecli_citcli", nullable = false)
-    private String ciudad;
-    
-    @Column(name = "pecli_descli", nullable = true)
-    private BigDecimal descuento;
-    
-    @Column(name = "pecli_indtyp", nullable = true)
-    private Integer tipoInd;
+    @Column(name = "peart_cantid", nullable = false)
+    private Integer cantidad;
 
     public Integer getCodigo() {
         return codigo;
@@ -55,49 +58,46 @@ public class Cliente implements Serializable {
         this.nombre = nombre;
     }
 
-    public String getCiudad() {
-        return ciudad;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setCiudad(String ciudad) {
-        this.ciudad = ciudad;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
-    public BigDecimal getDescuento() {
-        return descuento;
+    public BigDecimal getPrecio() {
+        return precio;
     }
 
-    public void setDescuento(BigDecimal descuento) {
-        this.descuento = descuento;
+    public void setPrecio(BigDecimal precio) {
+        this.precio = precio;
     }
 
-    public Integer getTipoInd() {
-        return tipoInd;
+    public Integer getCantidad() {
+        return cantidad;
     }
 
-    public void setTipoInd(Integer tipoInd) {
-        this.tipoInd = tipoInd;
+    public void setCantidad(Integer cantidad) {
+        this.cantidad = cantidad;
     }
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + Objects.hashCode(this.codigo);
+        int hash = 5;
+        hash = 59 * hash + Objects.hashCode(this.codigo);
         return hash;
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
         if (obj == null) {
             return false;
         }
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Cliente other = (Cliente) obj;
+        final Articulo other = (Articulo) obj;
         if (!Objects.equals(this.codigo, other.codigo)) {
             return false;
         }
@@ -106,7 +106,7 @@ public class Cliente implements Serializable {
 
     @Override
     public String toString() {
-        return "cliente{" + "codigo=" + codigo + ", nombre=" + nombre + ", ciudad=" + ciudad + ", descuento=" + descuento + ", tipoInd=" + tipoInd + '}';
+        return "Articulo{" + "codigo=" + codigo + ", nombre=" + nombre + ", descripcion=" + descripcion + ", precio=" + precio + ", cantidad=" + cantidad + '}';
     }
     
     
